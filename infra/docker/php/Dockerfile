@@ -5,7 +5,7 @@ WORKDIR /app
 ARG ENV
 
 # timezone environment
-ENV TZ=UTC \
+ENV TZ=Asia/Tokyo \
     # locale
     LANG=ja_JP.UTF-8 \
     # composer environment

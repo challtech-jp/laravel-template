@@ -328,6 +328,13 @@ EOF
 rm -f .env.example
 print_success ".env.localを作成しました（.env.exampleは削除しました）"
 
+# アプリのタイムゾーンをAsia/Tokyoに変更
+# （Laravelは起動時にconfig/app.phpの値でタイムゾーンを上書きするため、コンテナのTZだけでは反映されない）
+print_info "config/app.phpのタイムゾーンをAsia/Tokyoに変更しています..."
+sed -i.bak "s/'timezone' => 'UTC',/'timezone' => 'Asia\/Tokyo',/" config/app.php
+rm -f config/app.php.bak
+print_success "config/app.phpのタイムゾーンを変更しました"
+
 # compose.override.yamlは各自の上書き用なのでgit管理から除外する
 printf '\n/compose.override.yaml\n' >> .gitignore
 
